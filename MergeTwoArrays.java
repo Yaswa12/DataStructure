@@ -1,4 +1,4 @@
-ackage Learning;
+package Learning;
 
 public class MergeTwoArrays {
     private static final char[] MergeTwoArrays = null;
