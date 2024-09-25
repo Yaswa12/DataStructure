@@ -1,0 +1,23 @@
+public class isSubbsequence {
+    public boolean isSubsequence(String s, String t) {
+        int sPointer = 0, tPointer = 0;
+
+        while (sPointer < s.length() && tPointer < t.length()) {
+            // If the characters match, move both pointers
+            if (s.charAt(sPointer) == t.charAt(tPointer)) {
+                sPointer++;
+            }
+            // Always move the t pointer
+            tPointer++;
+        }
+
+        // If we traversed all of s, then it's a subsequence of t
+        return sPointer == s.length();
+    }
+
+    public static void main(String[] args) {
+        isSubsequence solution = new isSubsequence();
+        String s = "abc";
+        String t = "ahbgdc";
+        System.out.println(solution.isSubsequence(s, t)); // Output: true
+    }
