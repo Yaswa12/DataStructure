@@ -1,49 +1,35 @@
 public class spiralMatrix{
-    public class SpiralMatrix {
-        List<Integer> spiralOrder(int[][] matrix) {
-
-            List<Integer> res = new ArrayList<>();
-        
-            if (matrix.length == 0) {
-              return res;
+   public List<Integer> spiralOrder(int[][] matrix) {
+        List<Integer> answer = new ArrayList<>();
+        int endRow = matrix.length-1;
+        int endCol = matrix[0].length-1;
+        int startRow = 0;
+        int startCol = 0;
+        while(startRow <= endRow && startCol <= endCol){
+            for(int i=startCol;i<=endCol;i++){
+                answer.add(matrix[startRow][i]);
             }
-        
-            int rowBegin = 0;
-            int rowEnd = matrix.length - 1;
-            int colBegin = 0;
-            int colEnd = matrix[0].length - 1;
-        
-            while (rowBegin <= rowEnd && colBegin <= colEnd) {
-              // Traverse Right
-              for (int j = colBegin; j <= colEnd; j++) {
-                res.add(matrix[rowBegin][j]);
-              }
-              rowBegin++;
-        
-              // Traverse Down
-              for (int j = rowBegin; j <= rowEnd; j++) {
-                res.add(matrix[j][colEnd]);
-              }
-              colEnd--;
-        
-              if (rowBegin <= rowEnd) {
-                // Traverse Left
-                for (int j = colEnd; j >= colBegin; j--) {
-                  res.add(matrix[rowEnd][j]);
-                }
-              }
-              rowEnd--;
-        
-              if (colBegin <= colEnd) {
-                // Traverse Up
-                for (int j = rowEnd; j >= rowBegin; j--) {
-                  res.add(matrix[j][colBegin]);
-                }
-              }
-              colBegin++;
+            for(int j=startRow+1;j<=endRow;j++){
+                answer.add(matrix[j][endCol]);
             }
-        
-            return res;
-          }
-        
+            for(int i=endCol-1;i>=startCol;i--){
+                if(startRow == endRow){
+                    break;
+                }
+                answer.add(matrix[endRow][i]);
+            }
+            for(int i=endRow-1;i>=startRow+1;i--){
+                if(startCol == endCol){
+                    break;
+                }
+                answer.add(matrix[i][startCol]);
+            }
+            startRow ++;
+            startCol++;
+            endRow --;
+            endCol --;
         }
+        return answer;
+    }
+}
+}
